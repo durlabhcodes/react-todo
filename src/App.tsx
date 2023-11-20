@@ -1,24 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {decrease, increase} from "./redux/reducers/countSlice";
+import {useAppDispatch, useAppSelector} from "./redux/hooks";
+import {createNote} from "./redux/reducers/notesSlice";
 
 function App() {
+  const counter = useAppSelector((state) => state.counter.value)
+  const notes = useAppSelector((state) => state.notesReducer.notes)
+
+  const dispatch = useAppDispatch()
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div>
+          <button onClick={() => dispatch(increase())}>
+            Increase Value
+          </button>
+          <button onClick={() => dispatch(decrease())}>
+            Decrease Value
+          </button>
+          <div className="counter">{counter}
+          </div>
+        </div>
+
+        <div className="notes">
+            <button onClick={() => dispatch(createNote("A new Note : "+counter))}>
+                Add Note
+            </button>
+            <div>
+                <ul>
+                    {notes.map(note => <li>{note}</li>)}
+                </ul>
+            </div>
+        </div>
     </div>
   );
 }

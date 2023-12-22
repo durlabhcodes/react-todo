@@ -1,11 +1,13 @@
 import {configureStore} from "@reduxjs/toolkit";
 import countReducer from "./reducers/countSlice";
 import notesReducer from "./reducers/notesSlice";
+import todoReducer from "./reducers/todoSlice";
 
 export const store = configureStore({
     reducer: {
         counter: countReducer,
-        notesReducer: notesReducer
+        notesReducer: notesReducer,
+        todoReducer: todoReducer
     }
 })
 

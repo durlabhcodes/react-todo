@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-export interface NoteState {
+interface NoteState {
     notes: string[]
 }
 
